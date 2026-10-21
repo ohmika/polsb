@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Hartslag — camera-sensor</title>
+  <meta name="description" content="Meet je hartslag met de camera van je telefoon. Alles blijft op je toestel." />
+  <meta name="theme-color" content="#150a0d" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21c-8-7.5-10-10.5-10-14a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 22 7c0 3.5-2 6.5-10 14z" fill="currentColor"/>
+        </svg>
+        <span class="brand-name">Hartslag</span>
+      </div>
+      <p class="privacy-chip" title="Alle beeldverwerking gebeurt lokaal op je toestel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+          <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+        Lokaal op je toestel
+      </p>
+    </header>
+
+    <main class="card">
+      <!-- Uitlezing -->
+      <div class="readout" id="readout">
+        <div class="bpm-line">
+          <span class="bpm" id="bpm">–</span>
+          <span class="bpm-unit">slag/min</span>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite">Druk op start en leg je vingertip op de camera.</p>
+        <div class="pulse-dot" id="pulseDot" aria-hidden="true"></div>
+      </div>
+
+      <!-- Signaalgrafiek -->
+      <div class="trace-wrap" id="traceWrap" aria-hidden="true">
+        <canvas id="trace" height="90"></canvas>
+        <span class="trace-label">huidpuls</span>
+      </div>
+
+      <!-- Voortgang -->
+      <div class="progress" id="progress" role="progressbar" aria-label="Meetvoortgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <!-- Camera-preview -->
+      <div class="preview-wrap" id="previewWrap" hidden>
+        <video id="preview" playsinline muted></video>
+        <span class="preview-note" id="previewNote"></span>
+      </div>
+
+      <!-- Knop -->
+      <button class="cta" id="startBtn">
+        <span id="btnLabel">Start meting</span>
+      </button>
+
+      <!-- Resultaat-kwaliteit -->
+      <p class="quality" id="quality" hidden></p>
+    </main>
+
+    <!-- Instructies -->
+    <details class="howto" id="howto">
+      <summary>Hoe werkt het?</summary>
+      <div class="howto-body">
+        <ol>
+          <li>Druk op <strong>Start meting</strong> en geef je browser toegang tot de camera.</li>
+          <li>Leg je <strong>vingertip zachtjes</strong> volledig over de achtercamera, met de flits ertegen. Het licht schijnt door je huid.</li>
+          <li>Blijf <strong>stil</strong> zitten en adem rustig. Na ongeveer 15 seconden zie je je hartslag.</li>
+        </ol>
+        <p>Bij elke hartslag verandert de hoeveelheid licht die door je vinger valt. De app meet die fluctuaties 30 keer per seconde en herleidt daaruit je polsslag.</p>
+        <p>Werkt het niet? Leg je vinger rustiger en volledig over de lens (niet te hard drukken, dat remt de doorbloeding), of probeer een andere vinger. Heeft je toestel of browser geen flits, meet dan in een lichte ruimte.</p>
+      </div>
+    </details>
+
+    <footer class="foot">
+      <p>Geen medisch hulpmiddel — alleen ter indicatie. Bij klachten altijd een arts of een gecertificeerde meter raadplegen.</p>
+      <p>Er worden geen beelden of metingen bewaard of verstuurd; alles wordt direct na de meting weggegooid.</p>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
